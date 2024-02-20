@@ -1,4 +1,4 @@
-# LaTeX author support for the International Press journal *Beijing Journal of Pure and Applied Mathematics* (*BPAM*)
+# International Press journal BPAM author support
 
 ## Table of Contents
 
