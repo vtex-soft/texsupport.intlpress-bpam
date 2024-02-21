@@ -15,7 +15,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ipart}
-    [2024/02/20 v2.2, driver class for INTLPRESS journals]
+    [2024/02/21 v2.3, driver class for INTLPRESS journals]
 
 %%  DEPENDENCIES:
 %%  - article.cls
@@ -33,9 +33,6 @@
 %%  < OPTIONS
 %%  - MAIN SETUP
 %%  - VTeX SETUP
-
-\RequirePackage{fileinfo}
-\getFileInfo
 %%
 %%  >>>>>>> OPTIONS >>>>>>>
 %%
