@@ -15,7 +15,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ipart}
-    [2024/02/21 v2.3, driver class for INTLPRESS journals]
+    [2024/04/29 v2.4, driver class for INTLPRESS journals]
 
 %%  DEPENDENCIES:
 %%  - article.cls
@@ -69,6 +69,7 @@
 \def\pamq@layout@id{1}
 \def\sii@layout@id{2}
 \def\jbr@layout@id{3}
+\def\bpam@layout@id{4}
 \let\selected@layout\main@layout@id
 
 \def\journal@id{}
@@ -139,6 +140,7 @@
     }
 \DeclareOption{bpam}{%
     \PassOptionsToClass{11pt}{article}%
+    \def\@JID{BPAM}%
     \def\journal@id{-bpam}%
     \def\journal@name{Beijing J. of Pure and Appl. Math.}%
     \def\journal@issn{ISSN: 2994-8444}%
@@ -149,6 +151,7 @@
         \def\beditor@style{\rm}%
         }%
     \@autosecdottrue
+    \global\let\selected@layout\bpam@layout@id
     }
 \DeclareOption{amsa}{%
     \PassOptionsToClass{11pt}{article}%
@@ -231,8 +234,10 @@
     \RequirePackage{ipart-layout-pamq}
 \or  % 2 - sii layout
     \RequirePackage{ipart-layout-sii}
-\or  % 2 - sii layout
+\or  % 3 - jbr layout
     \RequirePackage{ipart-layout-jbr}
+\or  % 4 - bpam layout
+    \RequirePackage{ipart-layout-bpam}
 \fi
 %%
 %%  ======= VTeX SETUP =======
@@ -245,6 +250,12 @@
         \@ifundefined{load@natbib}{}{\load@natbib}%
     \fi
     }
+
+\ifdefined\HCode
+  \let\noxml\@gobble
+\else
+  \let\noxml\@firstofone
+\fi
 
 \endinput
 %%

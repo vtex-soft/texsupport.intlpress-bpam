@@ -1,70 +1,15 @@
 %%
-%% This is file `ipart-layout-main.sty',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% ipart.dtx  (with options: `layout,layout-main')
+%% This is file `ipart-layout-bpam.sty',
 %% 
-%%  Main settings file for the
-%%      Journal of Combinatorics (JOC)
-%%      Communications in Number Theory and Physics (CNTP)
-%%      Cambridge Journal of Mathematics (CJM)
-%%      Geometry, Imaging and Computing (GIC)
-%%      Mathematics, Computation and Geometry of Data (MCGD)
-%%      Communications in Information and Systems (CIS)
-%%      Annals of Mathematical Sciences and Applications (AMSA)
+%%  Additional settings file for the
 %%      Beijing Journal of Pure and Applied Mathematics (BPAM)
 %%
 \NeedsTeXFormat{LaTeX2e}
-\def\ipfmt@name{ipart-layout-main}
-\def\ipfmt@version{2024/02/20 v2.0.5}
+\def\ipfmt@name{ipart-layout-bpam}
+\def\ipfmt@version{2024/05/27 v0.0.3}
 \ProvidesPackage{\ipfmt@name}
-    [\ipfmt@version INTLPRESS journal main layout style]
+    [\ipfmt@version INTLPRESS journal BPAM layout style]
 
-%%  DEPENDENCIES:
-%%  - etoolbox.sty
-%%  - keyval.sty
-%%  - afterpackage.sty
-%%  - amsmath.sty
-%%  - amsthm.sty
-%%  - amssymb.sty
-%%  - amsfonts.sty
-%%  - natbib.sty
-%%  - url.sty
-%%  - breakurl.sty
-%%
-%%  STYLE FILE CONTENT:
-%%  - UTILS
-%%  - PAGE LAYOUT
-%%  - FONT
-%%  - HEADERS
-%%  - PREAMBLE
-%%  - HISTORY DATES
-%%  > FRONTMATTER
-%%    - RUNNING HEAD
-%%    - TITLE
-%%    - THANKS
-%%    - AUTHORS
-%%    - EMAIL, URL
-%%    - ADDRESS
-%%    - DEDICATION
-%%    - ABSTRACT
-%%    - KEYWORDS
-%%  < FRONTMATTER
-%%  - FOOTNOTE
-%%  - SECTIONS
-%%  - APPENDIX
-%%  - TABLE OF CONTENTS
-%%  - LIST ENVIRONMENTS
-%%  - FLOATS
-%%  - THE BIBLIOGRAPHY
-%%  - REFERENCES
-%%  - INICIALIZATION
-
-%%
-%%  ======= UTILS =======
-%%
 \RequirePackage{etoolbox}
 \RequirePackage{keyval}
 \RequirePackage{afterpackage}
@@ -186,6 +131,9 @@
 %%
 %%  ======= FONT =======
 %%
+\ifdefined\HCode
+  \RequirePackage[T1]{fontenc}
+\fi
 %%  Change to main font
 \renewcommand\normalsize{%
     \@setfontsize\normalsize{11\p@}{13.5\p@ plus .5\p@ minus .5\p@}%
@@ -629,6 +577,7 @@
 %%
 %%  ======= TITLE =======
 %%
+\let\pretitle\@gobble
 
 \def\runtitle#1{\gdef\@runtitle{#1}}
 \def\@runtitle{}
@@ -909,6 +858,11 @@
     \endgroup
     }
 
+\let\author@fmt@sav\author@fmt
+\def\author@fmt[#1]{%
+  \author@fmt@sav[]%
+  }
+
 %%  \corref
 %%  For corresponding author
 \def\corref#1{}
@@ -1063,6 +1017,11 @@
 %%  ======= ADDRESS =======
 %%
 \let\affiliation\@gobble
+\let\cny\@firstofone
+\let\dept\@firstofone
+\let\institution\@firstofone
+\let\addr\@firstofone
+\let\city\@firstofone
 
 %%  Put address at end
 \def\address{\@ifnextchar[{\address@fmt}{\address@fmt[default]}}
@@ -1999,4 +1958,4 @@
 
 \endinput
 %%
-%% End of file `ipart-layout-main.sty'.
+%% End of file `ipart-layout-bpam.sty'.
