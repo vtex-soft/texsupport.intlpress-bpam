@@ -22,7 +22,7 @@ The following files are given in the repository (or directly in `*.zip` archive)
   Please do not change them. These files are already loaded in the respective template files;
 * `plain.bst` - suggested BibTeX[^1] related bibliography style.
   If your bibliography is structured in BibTeX format, loading your `*.bib` file
-  and one of provided BibTeX style allows you to get the final format of the bibliography.
+  and provided BibTeX style allows you to get the final format of the bibliography.
 * `bpam-template.tex` - topmatter template (should be used for article preparation);
 * `bpam-sample.tex` - journal sample article;
 * `bpam-sample.pdf` - journal sample article (`PDF` file);
