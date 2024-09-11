@@ -15,7 +15,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ipart}
-    [2024/04/29 v2.4, driver class for INTLPRESS journals]
+    [2024/09/11 v2.6, driver class for INTLPRESS journals]
 
 %%  DEPENDENCIES:
 %%  - article.cls

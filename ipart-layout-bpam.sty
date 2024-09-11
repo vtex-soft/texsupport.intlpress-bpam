@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-bpam}
-\def\ipfmt@version{2024/05/27 v0.0.3}
+\def\ipfmt@version{2024/09/11 v0.0.6}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal BPAM layout style]
 
@@ -131,9 +131,13 @@
 %%
 %%  ======= FONT =======
 %%
-\ifdefined\HCode
-  \RequirePackage[T1]{fontenc}
+\RequirePackage[T1]{fontenc}
+\ifdefined\HCode\else
+  \RequirePackage{lmodern}
+  \DeclareFontFamily{OMX}{lmex}{}
+  \DeclareFontShape{OMX}{lmex}{m}{n}{<-> lmex10}{}
 \fi
+
 %%  Change to main font
 \renewcommand\normalsize{%
     \@setfontsize\normalsize{11\p@}{13.5\p@ plus .5\p@ minus .5\p@}%
@@ -178,8 +182,8 @@
 \def\tiny{\@setfontsize\tiny{6\p@}{7\p@}}
 \def\little{\@setfontsize\little{5\p@}{6\p@}}
 \def\large{\@setfontsize\large{12\p@}{14\p@}}
-\def\Large{\@setfontsize\Large{14\p@}{16\p@}}
-\def\LARGE{\@setfontsize\LARGE{16\p@}{18\p@}}
+\def\Large{\@setfontsize\Large{14.4\p@}{16\p@}}
+\def\LARGE{\@setfontsize\LARGE{17.28\p@}{18\p@}}
 \def\huge{\@setfontsize\huge{24\p@}{26\p@}}
 \def\Huge{\@setfontsize\Huge{25\p@}{27\p@}}
 
@@ -280,7 +284,9 @@
 
 \def\articletype#1{\gdef\@articletype{#1}}
 \@onlypreamble\articletype
-\def\aid#1{\gdef\@aid{#1}}
+\def\aid#1{%
+  \def\@aid{#1}%
+  }
 
 %%  pubyear, volume, paperno
 \def\@pubyear{}
@@ -299,15 +305,17 @@
 %%  arXiv
 \def\arxiv#1{%
     \gdef\@arxiv{#1}%
-    \AtBeginDocument{%
-        \safe@footnotetext{%
-            \url@fmt{arXiv: }{}{#1}{\arxiv@base\@arxiv}%
+    \ifdefined\HCode\else
+        \AtBeginDocument{%
+            \safe@footnotetext{%
+                \url@fmt{arXiv: }{}{#1}{\arxiv@base\@arxiv}%
+                }%
             }%
-        }%
+    \fi
     }
 \let\@arxiv\relax
-%%  http://arxiv.org/abs/math.PR/0603300
-\def\arxiv@base{http://arxiv.org/abs/}
+%%  https://arxiv.org/abs/math.PR/0603300
+\def\arxiv@base{https://arxiv.org/abs/}
 
 %%  firstpage, lastpage, pagerange
 \newcounter{firstpage}
@@ -871,7 +879,7 @@
 %%  ======= EMAIL, URL =======
 %%
 %%  \ead, \printead
-\def\email@text{\textit{E-mail address:} }
+\def\email@text{\normalfont\textit{E-mail address:} }
 \def\url@text{url: }
 \def\fullurl@text{url: }
 \def\ead@sep{;~}
@@ -1078,7 +1086,7 @@
     }
 
 %%  Invoke \printaddresses at end of document:
-\preto\enddocument{\printaddresses}
+\AtEndDocument{\printaddresses}
 %%
 %%  ======= DEDICATION =======
 %%
@@ -1360,7 +1368,7 @@
         \def\@svsechd{#4{\hskip #1\relax #5\aftersec@dot}}%
     \fi
     \ifnum\ssection@level=1%
-        \phantomsection\addcontentsline{toc}{section}{#5}%
+        \addcontentsline{toc}{section}{#5}%
     \fi
     \@xsect{#3}%
     }
