@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-bpam}
-\def\ipfmt@version{2024/11/22 v0.0.7}
+\def\ipfmt@version{2025/09/03 v0.0.8}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal BPAM layout style]
 
@@ -193,6 +193,9 @@
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{amsfonts}
+\ifdefined\noaccents@
+    \noaccents@
+\fi
 %%
 %%  ======= HEADERS =======
 %%
