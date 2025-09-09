@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-bpam}
-\def\ipfmt@version{2025/09/03 v0.0.8}
+\def\ipfmt@version{2025/09/09 v0.0.9}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal BPAM layout style]
 
@@ -253,16 +253,15 @@
     \let\@evenfoot\@oddfoot
     }
 
+\def\copyright@doi{}
 \def\copyright@text{%
     \url@fmt{}{\copyright@url@font}{\journal@name}{\journal@url}%
     \print@copyrightowner\break
     \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
     \@ifnonempty{\@volume, \@issue, \@pagerange, \@pubyear\break}%
-    \doi@text
+    \copyright@doi
     }
 \def\copyright@url@font{\scshape}
-\def\doi@text{\url@fmt{url: }{\ttfamily}{\paper@url}{\paper@url}}
-\def\paper@url{}
 
 %%  copyrightowner
 \def\print@copyrightowner{%
@@ -365,6 +364,16 @@
     }
 %%  hyperref redefines \pagenumbering, so we must override hyperref definition
 \let\ip@pagenumbering\pagenumbering
+
+%% doi
+\def\doi@prefix{DOI:~}
+\def\doi@base{https://doi.org/}
+\def\print@doi{%
+  \ifdefined\@doi
+    \doi@prefix\href{\doi@base\@doi}{\@doi}%
+  \fi
+  }
+\def\doi#1{\gdef\@doi{#1}}
 
 %%  startlocaldefs, endlocaldefs
 \def\startlocaldefs{\makeatletter}
