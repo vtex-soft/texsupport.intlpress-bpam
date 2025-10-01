@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-bpam}
-\def\ipfmt@version{2025/09/15 v0.0.10}
+\def\ipfmt@version{2025/10/01 v0.0.11}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal BPAM layout style]
 
@@ -254,12 +254,14 @@
     }
 
 \def\copyright@doi{}
+\def\copyright@volume{\@volume, \@issue, \@pagerange, \@pubyear}
+\def\copyright@info{\copyright@volume\break}
 \def\copyright@text{%
     {\copyright@url@font\journal@name}%
     \print@copyrightowner\break
     \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
-    \@ifnonempty{\@volume, \@issue, \@pagerange, \@pubyear\break}%
     \copyright@doi
+    \copyright@info
     }
 \def\copyright@url@font{\scshape}
 
@@ -370,9 +372,7 @@
 \def\doi@base{https://doi.org/}
 \def\doi@font{\ttfamily}
 \def\print@doi{%
-  \ifdefined\@doi
-    \doi@font\doi@prefix\href{\doi@base\@doi}{\@doi}%
-  \fi
+    {\doi@font\doi@prefix\href{\doi@base\@doi}{\@doi}}%
   }
 \def\doi#1{\gdef\@doi{#1}}
 
@@ -386,6 +386,7 @@
 \def\received@prefix{Received~}
 \def\revised@prefix{; revised~}
 \def\accepted@prefix{; accepted~}
+\def\pubonline@prefix{Published online:~}
 
 \def\history@exist{0}
 \def\@received{\@nil}
@@ -413,6 +414,14 @@
     \else
         \gdef\@accepted{#1}%
         \gdef\history@exist{1}%
+    \fi
+    }
+%\def\@pubonline{\@nil}
+\def\pubonline#1{%
+    \def\@tempa{#1}%
+    \ifx\@tempa\@empty
+    \else
+        \gdef\@pubonline{#1}%
     \fi
     }
 
